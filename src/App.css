@@ -1,0 +1,17 @@
+#parent{
+  text-align: center;
+}
+
+.App{
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+}
+
+.container{
+  border: 1px solid black;
+  height: 80px;
+}
+
+#player_detail{
+  
+}
