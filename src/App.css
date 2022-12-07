@@ -58,16 +58,17 @@ input{
 }
 
 button{
-  background-color: red;
-  border-radius: none;
-  color: white;
-  background-image: linear-gradient(to right,red,violet);
-  border: none;
-  border-radius: 20px;
-  width: 100px;
-  height: 30px;
-  margin-top: 10px;
-  margin-bottom: 10px;
+  button{
+    background-color: black;
+    border-radius: none;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    width: 100px;
+    height: 30px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
 }
 
 p{
