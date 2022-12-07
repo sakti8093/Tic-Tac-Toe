@@ -3,6 +3,7 @@ import './App.css';
 import { useState } from 'react';
 import { ImCross } from 'react-icons/im';
 import { FaRegCircle } from 'react-icons/fa';
+import my_song from './my_song.mp3'
 
 function App() {
 
@@ -10,7 +11,15 @@ function App() {
   let [arr,setArr]=useState(temp)
   let [playerObj,setPlayerObj]=useState({player1:"",player2:""});
   let [player,setPlayer]=useState(0)
+  let [start,setStart]=useState(false)
+
+  let [song,setSong]=useState(new Audio(my_song))
+
   const handleClick=(i)=>{
+
+    if(!start){
+     return alert("Click start button")
+    }
 
     if(arr[i]==0 || arr[i]==1){
       alert("Already filled !!");
@@ -37,8 +46,14 @@ function App() {
       setPlayerObj({...playerObj,[name]:value})
   }
 
-  const handleSubmit=() =>{
-    
+  const handleSubmit=(e) =>{
+    e.preventDefault();
+    setStart(true);
+    song.play();
+  }
+
+  const handleAudioStop=() => {
+    song.pause();
   }
 
 
@@ -62,34 +77,60 @@ function App() {
     }else if(arr[2]==arr[4]&& arr[4]==arr[6] && arr[2]!=-1 && arr[4]!=-1 && arr[6]!=-1){
       check=true;
     }
+    let tie=false;
+    for(let i=0;i<arr.length;i++){
+      if(arr[i]==0 || arr[i]==1){
+        tie=true;
+      }else{
+        tie=false;
+        break
+      }
+    }
+    if(tie){
+      alert("Its a tie")
+        temp=Array(9).fill(-1)
+        setArr(temp);
+        
+        setStart(false);
+        return
+    }
     if(check){
       if(player==0){
-        alert(player + "wins")
+        alert(playerObj.player1 + " wins")
         temp=Array(9).fill(-1)
         setArr(temp)
+        setStart(false);
       }else{
-        alert(player + "wins")
+        alert(playerObj.player2  + " wins")
         temp=Array(9).fill(-1)
         setArr(temp)
+        setStart(false);
       }
     }
   }
 
   return (
     <div id='parent'>
+        <h1>TIC-TAC-TOE</h1>
       <form onSubmit={handleSubmit} >
         <input name='player1' placeholder='Enter Player 1 name' required value={setPlayerObj.player1} onChange={handleChange}  /> 
         <input name='player2' placeholder='Enter Player 2 name' required value={setPlayerObj.player2} onChange={handleChange} /> 
-        <button>SUBMIT</button>
+        <p>Note: Player 1 will be starting first</p>
+        <button>START</button>
       </form>
-    <h1>TIC-TAC-TOE</h1>
+  
     <div id='player_detail'>
-
+       {start?<> <h3>PLAYER1: <span id='player1'>{playerObj.player1}</span></h3>
+        <h3>PLAYER2: <span id='player2'>{playerObj.player2}</span> </h3>
+        <h1>{player==0?`${playerObj.player1} turn`:`${playerObj.player2} turn` }</h1>
+        <button onClick={handleAudioStop}>stop sound !!</button>
+        </>:<></>}
+   
     </div>
     <div className='App'  >
     
       {arr.map((elem,index)=>(
-        <div className='container' style={{ backgroundColor: elem==0?"red":elem==1?"yellow":"pink"  }} onClick={()=>handleClick(index)} >{elem==0?<ImCross/>:elem==1?<FaRegCircle/>:""}</div>
+        <div className='container' style={{ backgroundColor: elem==0?"red":elem==1?"green":"pink"  }} onClick={()=>handleClick(index)} >{elem==0?<h1><ImCross/></h1>:elem==1?<h1><FaRegCircle/></h1>:""}</div>
       ))}
     </div>
     </div>

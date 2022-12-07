@@ -1,17 +1,79 @@
+body{
+  background-color: antiquewhite;
+}
 #parent{
   text-align: center;
+  margin-bottom: 100px;
+
 }
 
 .App{
   display: grid;
+  width: 80%;
+  margin: auto;
   grid-template-columns: repeat(3,1fr);
+  gap: 10px;
 }
 
 .container{
   border: 1px solid black;
-  height: 80px;
+  height: 100px;
+  border-radius: 10px;
 }
 
+
 #player_detail{
-  
+  background-image: linear-gradient(45deg,pink,lightcoral);
+  width: 50%;
+  margin: auto;
+  border-radius: 10px;
+  box-shadow: 20px 20px 12px grey;
+  margin-bottom: 40px;
+}
+
+#player1{
+  color: red;
+}
+
+#player2{
+  color: green;
+}
+
+form{
+  width: 50%;
+  margin: auto;
+  padding: 3%;
+  box-shadow:  10px 10px 10px grey;
+  border-radius: 10px;
+}
+
+input{
+  width: 80%;
+  padding: 10px;
+  display: block;
+  margin: auto;
+  margin-top: 10px;
+  border-radius: 10px;
+  border: none;
+}
+
+button{
+  background-color: red;
+  border-radius: none;
+  color: white;
+  background-image: linear-gradient(to right,red,violet);
+  border: none;
+  border-radius: 20px;
+  width: 100px;
+  height: 30px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+p{
+  font-size: 10px;
+}
+
+h1{
+  font-size: 50px;
 }
